@@ -8,15 +8,15 @@ module.exports = (config) => {
 
   config.addPassthroughCopy('css');
   config.addPassthroughCopy('static');
-  
+
   config.setDataDeepMerge(true);
 
   config.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd');
   });
 
   config.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL, yyyy");
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat("LLL dd, yyyy");
   });
 
   config.addCollection("tagList", collection => {
@@ -26,7 +26,7 @@ module.exports = (config) => {
       item.data.tags
         .filter(tag => !['post', 'all'].includes(tag))
         .forEach(tag => {
-          if(typeof tagsObject[tag] === 'undefined') {
+          if (typeof tagsObject[tag] === 'undefined') {
             tagsObject[tag] = 1
           } else {
             tagsObject[tag] += 1
